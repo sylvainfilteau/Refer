@@ -1,0 +1,10 @@
+<h1>Refer > References guide creator</h1>
+
+<h2>Class structure</h2>
+
+<ul>
+<li>Refer\Processor: entry point of the app. Takes a source and a destination directory in the constructor. When calling the method <em>process</em>, it creates the HTML in the destination according to markdown files in source directory.</li>
+<li>Refer\Parser\ParserInterface: Defines methods that should be implemented by parsers. There should be as many parsers than file format.</li>
+<li>Refer\Parser\MarkdownParser: Proxy to the Markdown_Parser package</li>
+<li>Refer\Parser\ParserFactory: Creates parser by filename extension</li>
+</ul>
