@@ -30,6 +30,9 @@ class Processor {
 	public function setConfig(array $config) {
 	}
 
+	/**
+	 * Process files in the source directory to produce HTML in destination directory
+	 */
 	public function process() {
 		$finder = new FileFinder();
 		$iterator = $finder->files()->in($this->_source_directory)->name('*.md');
@@ -39,9 +42,9 @@ class Processor {
 			$html = $parser->parse(file_get_contents($file->getRealpath()));
 			
 			$file_path = $file->getPathInfo()->getPathname();
-			$relative_path = $this->getRelativePathFromBaseDirectory($file_path, $this->_source_directory);
+			$relative_path = $this->_getRelativePathFromBaseDirectory($file_path, $this->_source_directory);
 			
-			$this->createDirectoryIfNotExists($this->_destination_directory . '/' . $relative_path);
+			$this->_createDirectoryIfNotExists($this->_destination_directory . '/' . $relative_path);
 
 			$extension = $file->getExtension();
 			$destination_file = $file->getBasename(".$extension") . ".html";
@@ -50,13 +53,13 @@ class Processor {
 		}
 	}
 
-	public function createDirectoryIfNotExists($directory) {
+	private function _createDirectoryIfNotExists($directory) {
 		if (!is_dir($directory)) {
 			mkdir($directory, 0777, true);
 		}
 	}
 
-	public function getRelativePathFromBaseDirectory($directory, $base) {
+	private function _getRelativePathFromBaseDirectory($directory, $base) {
 		if (!substr($directory, 0, strlen($base)) == $base) {
 			throw new UnexpectedValueException('Base directory provided isn\'t the base of the directory parameter');
 		}
