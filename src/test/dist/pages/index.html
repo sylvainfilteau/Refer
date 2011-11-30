@@ -1,0 +1,55 @@
+<h1>Refer > References guide creator</h1>
+
+<h2>Class structure</h2>
+
+<ul>
+<li>Refer\Processor: entry point of the app. Takes a source and a destination directory in the constructor. When calling the method <em>process</em>, it creates the HTML in the destination according to markdown files in source directory.</li>
+<li>Refer\Parser\ParserInterface: Defines methods that should be implemented by parsers. There should be as many parsers than file format.</li>
+<li>Refer\Parser\MarkdownParser: Proxy to the Markdown&#95;Parser package</li>
+<li>Refer\Parser\ParserFactory: Creates parser by filename extension</li>
+<li>Refer\PageStructure\Node: Represents a directory in the structure.
+
+<ul>
+<li>name</li>
+<li>pages</li>
+<li>childNodes</li>
+</ul></li>
+<li>Refer\PageStructure\Page: Represents a page in HTML format.
+
+<ul>
+<li>title</li>
+<li>content</li>
+</ul></li>
+<li>Refer\PageStructure\PageFactory: Build a page from a source file.
+
+<ul>
+<li>fromFilename($filename)</li>
+</ul></li>
+<li>Refer\PageStructure\NodeFactory: Build a tree of pages from a source directory.
+
+<ul>
+<li>fromDirectory($directory)</li>
+</ul></li>
+</ul>
+
+<h3>Page structure</h3>
+
+<p>An alternative to data source is to create a internal page structure where all the content is processed when created. The page structure is then exported to disk with an exporter.</p>
+
+<p>There would be the same principle of tree pages as leaf and directory as node. Each pages should provide a title and a content. The difference here is that the pages are already processed, so we can guess a better title for each pages. The title should be fetched from the HTML DOM structure, in the first &lt;h1&gt; tag.</p>
+
+<h3>Export</h3>
+
+<p>The Export namespace enables to export PageStructure\Node to disk.</p>
+
+<ul>
+<li>Refer\Export\DirectoryExporter: Exports the page structure to disk.</li>
+</ul>
+
+<h2>Themes</h2>
+
+<p>Themes are located in pear data&#95;dir/refer/themes. Refer is currently packaged with one theme named <em>base</em>.</p>
+
+<h3>Structure of a theme directory</h3>
+
+<p>A theme is simply copied in the destination directory. So, a theme is simply a collection of static files used to build the page in Ajax.</p>

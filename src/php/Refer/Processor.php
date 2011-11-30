@@ -3,7 +3,9 @@
 namespace Refer;
 
 use Refer\Parser\ParserFactory;
-use Symfony\Component\Finder\Finder as FileFinder;
+use Refer\PageStructure\NodeFactory;
+use Refer\Export\DirectoryExporter;
+use Refer\Theme\Directory as ThemeDirectory;
 
 class Processor {
 
@@ -34,44 +36,13 @@ class Processor {
 	 * Process files in the source directory to produce HTML in destination directory
 	 */
 	public function process() {
-		$finder = new FileFinder();
-		$iterator = $finder->files()->in($this->_source_directory)->name('*.md');
+		$root = NodeFactory::fromDirectory($this->_source_directory);
+		$exporter = new DirectoryExporter($this->_destination_directory);
 
-		foreach($iterator as $file) {
-			$parser = ParserFactory::fromFilename($file->getRealpath());
-			$html = $parser->parse(file_get_contents($file->getRealpath()));
-			
-			$file_path = $file->getPathInfo()->getPathname();
-			$relative_path = $this->_getRelativePathFromBaseDirectory($file_path, $this->_source_directory);
-			
-			$this->_createDirectoryIfNotExists($this->_destination_directory . '/' . $relative_path);
+		$exporter->export($root);
 
-			$extension = $file->getExtension();
-			$destination_file = $file->getBasename(".$extension") . ".html";
-
-			file_put_contents($this->_destination_directory . '/' . $relative_path . '/' . $destination_file, $html);
-		}
-	}
-
-	private function _createDirectoryIfNotExists($directory) {
-		if (!is_dir($directory)) {
-			mkdir($directory, 0777, true);
-		}
-	}
-
-	private function _getRelativePathFromBaseDirectory($directory, $base) {
-		if (!substr($directory, 0, strlen($base)) == $base) {
-			throw new UnexpectedValueException('Base directory provided isn\'t the base of the directory parameter');
-		}
-
-		$relative = substr($directory, strlen($base));
-		
-		if (strlen($relative) > 0 && $relative[0] == "/") {
-			$relative = substr($relative, 1);
-		}
-
-		return $relative;
-
+		$theme_directory = new ThemeDirectory(__DIR__ . "/../../data/themes/base");
+		$theme_directory->install($this->_destination_directory);
 	}
 
 }
