@@ -4,7 +4,7 @@
 use Refer\Processor;
 
 if (getenv('REFER')) {
-	set_include_path(get_include_path() . PATH_SEPARATOR . realpath(getenv('REFER')));
+	set_include_path(realpath(getenv('REFER')) . PATH_SEPARATOR . get_include_path());
 }
 
 require_once('Zend/Loader/Autoloader.php');
