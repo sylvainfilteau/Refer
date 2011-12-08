@@ -14,6 +14,11 @@ $autoloader->registerNamespace('Zend');
 $autoloader->registerNamespace('Markdown');
 $autoloader->registerNamespace('Symfony');
 $autoloader->registerNamespace('Refer');
+$autoloader->registerNamespace('PEAR');
+
+if (getenv('REFER')) {
+	PEAR_Config::singleton()->set('data_dir', realpath(__DIR__ . "/../data"));
+}
 
 try {
 	$opts = new Zend_Console_Getopt(array());

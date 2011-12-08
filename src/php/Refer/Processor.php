@@ -5,7 +5,7 @@ namespace Refer;
 use Refer\Parser\ParserFactory;
 use Refer\PageStructure\NodeFactory;
 use Refer\Export\DirectoryExporter;
-use Refer\Theme\Directory as ThemeDirectory;
+use Refer\Theme\Theme;
 
 class Processor {
 
@@ -41,8 +41,8 @@ class Processor {
 
 		$exporter->export($root);
 
-		$theme_directory = new ThemeDirectory(__DIR__ . "/../../data/themes/base");
-		$theme_directory->install($this->_destination_directory);
+		$theme = new Theme("base");
+		$theme->install($this->_destination_directory);
 	}
 
 }

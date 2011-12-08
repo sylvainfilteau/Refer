@@ -4,13 +4,18 @@ namespace Refer\Theme;
 
 use Symfony\Component\Finder\Finder as FileFinder;
 
-class Directory {
+class Theme {
 	
 	private $_directory;
 
-	public function __construct($directory) {
+	public function __construct($name) {
+		$data_dir = \PEAR_Config::singleton()->get('data_dir');
+		$refer_theme_dir = $data_dir . "/refer/themes";
+
+		$directory = $refer_theme_dir . "/$name";
+
 		if (!is_dir($directory)) {
-			throw new \InvalidArgumentException("The theme directory isn't valid ($directory)");
+			throw new \InvalidArgumentException("The theme '$name' doesn't exists ($directory)");
 		}
 
 		$this->_directory = realpath($directory);
