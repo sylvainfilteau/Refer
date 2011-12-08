@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.9.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0
+	http://pear.php.net/dtd/tasks-1.0.xsd
+	http://pear.php.net/dtd/package-2.0
+	http://pear.php.net/dtd/package-2.0.xsd">
+	<name>Refer</name>
+	<channel>pear.ada-consult.com</channel>
+	<summary>Builds reference guide with a collection of markdown formated file.</summary>
+	<description>Refer builds a an html reference guide out of a directory structure containing markdown formated files</description>
+	<lead>
+		<name>Sylvain Filteau</name>
+		<user>cidsphere</user>
+		<email>cidsphere@gmail.com</email>
+		<active>yes</active>
+	</lead>
+	<date>@@DATE@@</date>
+	<time>@@TIME@@</time>
+	<version>
+		<release>@@VERSION@@</release>
+		<api>@@VERSION@@</api>
+	</version>
+	<stability>
+		<release>@@STABILITY@@</release>
+		<api>@@STABILITY@@</api>
+	</stability>
+	<license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
+	<notes>-</notes>
+	<contents>
+		<dir name="/">
+			<file baseinstalldir="/" name="refer.php" role="script" />
+			<file baseinstalldir="/" name="Refer/Processor.php" role="php" />
+			<file baseinstalldir="/" name="Refer/Export/DirectoryExporter.php" role="php" />
+			<file baseinstalldir="/" name="Refer/PageStructure/Node.php" role="php" />
+			<file baseinstalldir="/" name="Refer/PageStructure/NodeFactory.php" role="php" />
+			<file baseinstalldir="/" name="Refer/PageStructure/Page.php" role="php" />
+			<file baseinstalldir="/" name="Refer/PageStructure/PageFactory.php" role="php" />
+			<file baseinstalldir="/" name="Refer/Parser/MarkdownParser.php" role="php" />
+			<file baseinstalldir="/" name="Refer/Parser/ParserFactory.php" role="php" />
+			<file baseinstalldir="/" name="Refer/Parser/ParserInterface.php" role="php" />
+			<file baseinstalldir="/" name="Refer/Theme/Theme.php" role="php" />
+
+			<file baseinstalldir="/" name="themes/base/resources/css/ext-neptune.css" role="data" />
+			<file baseinstalldir="/" name="themes/base/app-all.js" role="data" />
+			<file baseinstalldir="/" name="themes/base/index.html" role="data" />
+			<file baseinstalldir="/" name="themes/base/ext-4.1-pr1/resources/themes/images/neptune/icons.png" role="data" />
+			<file baseinstalldir="/" name="themes/base/ext-4.1-pr1/resources/themes/images/neptune/grid/header-border.png" role="data" />
+			<file baseinstalldir="/" name="themes/base/ext-4.1-pr1/ext-neptune.js" role="data" />
+			<file baseinstalldir="/" name="themes/base/ext-4.1-pr1/ext-all.js" role="data" />
+		</dir>
+	</contents>
+	<dependencies>
+		<required>
+			<php>
+				<min>5.3</min>
+			</php>
+			<pearinstaller>
+				<min>1.4.0</min>
+			</pearinstaller>
+			<package>
+				<name>Markdown_Parser</name>
+				<channel>pear.ada-consult.com</channel>
+			</package>
+			<package>
+				<name>Zend</name>
+				<channel>zend.googlecode.com/svn</channel>
+				<min>1.11.11</min>
+			</package>
+			<package>
+				<name>Finder</name>
+				<channel>pear.symfony.com</channel>
+				<min>2.0.6</min>
+			</package>
+		</required>
+	</dependencies>
+	<phprelease />
+	<changelog>
+		<release>
+			<version>
+				<release>@@VERSION@@</release>
+				<api>@@VERSION@@</api>
+			</version>
+			<stability>
+				<release>@@STABILITY@@</release>
+				<api>@@STABILITY@@</api>
+			</stability>
+			<date>@@DATE@@</date>
+			<license uri="http://www.opensource.org/licenses/bsd-license.php">BSD Style</license>
+			<notes>-</notes>
+		</release>
+	</changelog>
+</package>
