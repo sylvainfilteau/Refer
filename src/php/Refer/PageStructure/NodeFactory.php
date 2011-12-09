@@ -13,7 +13,8 @@ class NodeFactory {
 
 		$finder = new FileFinder();
 		$iterator = $finder->in($directory)->depth('== 0')->filter(function (\SplFileInfo $fileinfo) {
-			return ($fileinfo->isDir() || in_array($fileinfo->getExtension(), array('md')));
+			$extension = pathinfo($fileinfo->getRealpath(), PATHINFO_EXTENSION);
+			return ($fileinfo->isDir() || in_array($extension, array('md')));
 		});
 
 		foreach ($iterator as $file) {

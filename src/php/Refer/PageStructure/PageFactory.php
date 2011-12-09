@@ -17,7 +17,7 @@ class PageFactory {
 	public static function fromFilename($filename) {
 		$fileinfo = new \SplFileInfo($filename);
 
-		$extension = $fileinfo->getExtension();
+		$extension = pathinfo($fileinfo->getRealpath(), PATHINFO_EXTENSION);
 		$id = $fileinfo->getBasename(".$extension");
 		$title = $id; // Default title
 
