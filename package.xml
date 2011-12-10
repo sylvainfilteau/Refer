@@ -38,6 +38,7 @@
 			<file baseinstalldir="/" name="Refer/Parser/ParserFactory.php" role="php" />
 			<file baseinstalldir="/" name="Refer/Parser/ParserInterface.php" role="php" />
 			<file baseinstalldir="/" name="Refer/Theme/Theme.php" role="php" />
+			<file baseinstalldir="/" name="Refer/Configuration.php" role="php" />
 
 			<file baseinstalldir="/" name="themes/base/resources/css/ext-neptune.css" role="data" />
 			<file baseinstalldir="/" name="themes/base/app-all.js" role="data" />

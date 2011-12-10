@@ -10,7 +10,7 @@
 	<property name="project.srcdir" value="${project.basedir}/src" />
 	<property name="project.src.bindir" value="${project.srcdir}/bin" />
 	<property name="project.src.phpdir" value="${project.srcdir}/php" />
-	<property name="project.src.datadir" value="${project.srcdir}/data" />
+	<property name="project.src.datadir" value="${project.srcdir}/data/Refer" />
 	
 	<tstamp>
 		<format property="project.build.date" pattern="%Y-%m-%d" />

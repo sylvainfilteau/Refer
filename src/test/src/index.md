@@ -38,4 +38,29 @@ Themes are located in pear data\_dir/refer/themes. Refer is currently packaged w
 
 A theme is simply copied in the destination directory. So, a theme is simply a collection of static files used to build the page in Ajax.
 
+## Configurations
 
+A source tree should be able to provide certain parameters to the processor to customize the rendering. Those parameters could be :
+
+ * Theme name
+ * Theme directory (if custom)
+ * Global title
+ * Specify new renderers
+ * Authors
+ * Copyrights
+
+### Configuration file
+
+Should be in json format at the root of the source directory. It should look like this :
+
+    {
+    	"theme": "ada",
+    	"theme_directory": "../theme",
+    	"title": "ADA Framework reference guide",
+    }
+
+### Configuration classes
+
+The processor should look in the source directory for a config.json file. If it is present, it should load it with the class Refer\Configuration\Configuration. If not, it should provide a configuration for other classes containing default values.
+
+ * Refer\Configuration\Configuration

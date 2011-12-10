@@ -8,11 +8,8 @@ class Theme {
 	
 	private $_directory;
 
-	public function __construct($name) {
-		$data_dir = \PEAR_Config::singleton()->get('data_dir');
-		$refer_theme_dir = $data_dir . "/Refer/themes";
-
-		$directory = $refer_theme_dir . "/$name";
+	public function __construct($name, $theme_directory) {
+		$directory = $theme_directory . "/$name";
 
 		if (!is_dir($directory)) {
 			throw new \InvalidArgumentException("The theme '$name' doesn't exists ($directory)");

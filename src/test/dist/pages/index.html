@@ -53,3 +53,35 @@
 <h3>Structure of a theme directory</h3>
 
 <p>A theme is simply copied in the destination directory. So, a theme is simply a collection of static files used to build the page in Ajax.</p>
+
+<h2>Configurations</h2>
+
+<p>A source tree should be able to provide certain parameters to the processor to customize the rendering. Those parameters could be :</p>
+
+<ul>
+<li>Theme name</li>
+<li>Theme directory (if custom)</li>
+<li>Global title</li>
+<li>Specify new renderers</li>
+<li>Authors</li>
+<li>Copyrights</li>
+</ul>
+
+<h3>Configuration file</h3>
+
+<p>Should be in json format at the root of the source directory. It should look like this :</p>
+
+<pre><code>{
+    "theme": "ada",
+    "theme_directory": "../theme",
+    "title": "ADA Framework reference guide",
+}
+</code></pre>
+
+<h3>Configuration classes</h3>
+
+<p>The processor should look in the source directory for a config.json file. If it is present, it should load it with the class Refer\Configuration\Configuration. If not, it should provide a configuration for other classes containing default values.</p>
+
+<ul>
+<li>Refer\Configuration\Configuration</li>
+</ul>

@@ -6,6 +6,7 @@ use Refer\Parser\ParserFactory;
 use Refer\PageStructure\NodeFactory;
 use Refer\Export\DirectoryExporter;
 use Refer\Theme\Theme;
+use Refer\Configuration;
 
 class Processor {
 
@@ -13,7 +14,9 @@ class Processor {
 
 	private $_destination_directory;
 
-	public function __construct($source_directory, $destination_directory, $config = array()) {
+	private $_config;
+
+	public function __construct($source_directory, $destination_directory) {
 
 		if (!is_dir($source_directory)) {
 			throw new \UnexpectedValueException("The source directory doesn't exists");
@@ -26,10 +29,16 @@ class Processor {
 		$this->_source_directory = realpath($source_directory);
 		$this->_destination_directory = realpath($destination_directory);
 
-		$this->setConfig($config);
+		$src_config = $this->_source_directory . "/config.json";
+		if (!is_file($src_config)) {
+			$src_config = array();
+		}
+
+		$this->setConfig(new Configuration($src_config));
 	}
 
-	public function setConfig(array $config) {
+	public function setConfig(Configuration $config) {
+		$this->_config = $config;
 	}
 
 	/**
@@ -41,7 +50,7 @@ class Processor {
 
 		$exporter->export($root);
 
-		$theme = new Theme("base");
+		$theme = new Theme($this->_config->getTheme(), $this->_config->getThemeDirectory());
 		$theme->install($this->_destination_directory);
 	}
 
