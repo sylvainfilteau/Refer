@@ -43,7 +43,7 @@ class PageFactory {
 	 * @return mixed The title of the page of false if it can't find it.
 	 */
 	private static function _findTitle($html_content) {
-		$dom = \DOMDocument::loadHTML($html_content);
+		$dom = \DOMDocument::loadHTML('<?xml encoding="UTF-8">' . $html_content);
 		$node_list = $dom->getElementsByTagName('h1');
 
 		if ($node_list->length > 0) {
